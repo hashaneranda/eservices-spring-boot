@@ -1,0 +1,511 @@
+swagger: "2.0"
+info:
+  description: "API specification for the NAGP microservices assignment"
+  version: "1.0.0"
+  title: "Swagger E-Services App"
+  contact:
+    email: "hashan.jayalath@nagarro.com"
+host: "localhost:8080"
+tags:
+  - name: "Orders"
+    description: "Orders endpoints"
+  - name: "Utilities"
+    description: "Utilities endpoints"
+  - name: "Admin"
+    description: "Admin endpoints"
+  - name: "Consumers"
+    description: "Consumers endpoints"
+  - name: "Workers"
+    description: "Workers endpoints"
+
+schemes:
+  - "http"
+paths:
+  /orders:
+    get:
+      tags:
+        - "Orders"
+      description: "Get all orders"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful retrieval of orders"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Order"
+    post:
+      tags:
+        - "Orders"
+      description: "Add new order"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "Successful addition of orders"
+          schema:
+            $ref: "#/definitions/Order"
+        "403":
+          description: "Order already exists"
+
+    put:
+      tags:
+        - "Orders"
+      description: "Add or update new order"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "Successful addition or updation of orders"
+          schema:
+            $ref: "#/definitions/Order"
+
+  /orders/{id}:
+    get:
+      tags:
+        - "Orders"
+      description: "Get order for given id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the order"
+          required: true
+          type: "string"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful retrieval of order"
+          schema:
+            $ref: "#/definitions/Order"
+        "404":
+          description: "Order not found"
+
+    delete:
+      tags:
+        - "Orders"
+      description: "delete order for given id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the order"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful deletion of order"
+        "404":
+          description: "Order not found"
+
+  /utilities:
+    get:
+      tags:
+        - "Utilities"
+      description: "Get all Utilities"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful retrieval of utilities"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Utility"
+    post:
+      tags:
+        - "Utilities"
+      description: "Add new Utility"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Utility"
+      responses:
+        "200":
+          description: "Successful addition of Utilities"
+          schema:
+            $ref: "#/definitions/Utility"
+        "403":
+          description: "Utility already exists"
+
+    put:
+      tags:
+        - "Utilities"
+      description: "Add or update new Utility"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Utility"
+      responses:
+        "200":
+          description: "Successful addition or updation of Utilities"
+          schema:
+            $ref: "#/definitions/Utility"
+
+  /utilities/{id}:
+    get:
+      tags:
+        - "Utilities"
+      description: "Get Utility for given id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the Utility"
+          required: true
+          type: "string"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful retrieval of Utility"
+          schema:
+            $ref: "#/definitions/Utility"
+        "404":
+          description: "Utility not found"
+
+    delete:
+      tags:
+        - "Utilities"
+      description: "delete Utility for given id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the Utility"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful deletion of Utility"
+        "404":
+          description: "Utility not found"
+
+  /consumers:
+    get:
+      tags:
+        - "Consumers"
+      description: "Get all consumers"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful retrieval of consumers"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Consumer"
+    post:
+      tags:
+        - "Consumers"
+      description: "Add new consumer"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Consumer"
+      responses:
+        "200":
+          description: "Successful addition of consumers"
+          schema:
+            $ref: "#/definitions/Consumer"
+        "403":
+          description: "Consumer already exists"
+
+    put:
+      tags:
+        - "Consumers"
+      description: "Add or update new consumer"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Consumer"
+      responses:
+        "200":
+          description: "Successful addition or updation of consumers"
+          schema:
+            $ref: "#/definitions/Consumer"
+
+  /consumers/{id}:
+    get:
+      tags:
+        - "Consumers"
+      description: "Get consumer for given id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the consumer"
+          required: true
+          type: "string"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful retrieval of consumer"
+          schema:
+            $ref: "#/definitions/Consumer"
+        "404":
+          description: "Consumer not found"
+
+    delete:
+      tags:
+        - "Consumers"
+      description: "delete consumer for given id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the consumer"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful deletion of consumer"
+        "404":
+          description: "Consumer not found"
+
+  /consumers/{id}/orders:
+    post:
+      tags:
+        - "Consumers"
+      description: "Create orders for a consumer"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the consumer"
+          required: true
+          type: "string"
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/ConsumerOrder"
+      responses:
+        "200":
+          description: "Successful addition of consumers"
+          schema:
+            $ref: "#/definitions/Order"
+        "403":
+          description: "Consumer already exists"
+
+  /workers:
+    get:
+      tags:
+        - "Workers"
+      description: "Get all Workers"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful fetch all of Workers"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Worker"
+    post:
+      tags:
+        - "Workers"
+      description: "Add new Worker"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Worker"
+      responses:
+        "200":
+          description: "Successful addition of new Worker"
+          schema:
+            $ref: "#/definitions/Worker"
+        "403":
+          description: "Worker already exists"
+
+    put:
+      tags:
+        - "Workers"
+      description: "Add or update new Worker"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/Worker"
+      responses:
+        "200":
+          description: "Successful addition or updation of Worker"
+          schema:
+            $ref: "#/definitions/Worker"
+
+  /workers/{id}:
+    get:
+      tags:
+        - "Workers"
+      description: "Get Worker by id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the Worker"
+          required: true
+          type: "string"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "Successful retrieval of Worker"
+          schema:
+            $ref: "#/definitions/Worker"
+        "404":
+          description: "Worker not found"
+
+    delete:
+      tags:
+        - "Workers"
+      description: "delete Worker by id"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the Worker"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful deletion of Worker"
+        "404":
+          description: "Worker not found"
+
+  /workers/{id}/order-status:
+    post:
+      tags:
+        - "Workers"
+      description: "Set order status for Worker"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "id of the Worker"
+          required: true
+          type: "string"
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/OrderStatus"
+      responses:
+        "200":
+          description: "Successfully updated the order status"
+
+  /admin/orders:
+    post:
+      tags:
+        - "Admin"
+      description: "Aadmin endpoint to assign Worker to orders"
+      parameters:
+        - name: body
+          in: "body"
+          schema:
+            $ref: "#/definitions/OrderAssignment"
+      responses:
+        "200":
+          description: "Successfully updated the order status"
+        "500":
+          description: "Server errors"
+        "400":
+          description: "Invalid parameter errors"
+
+definitions:
+  Order:
+    properties:
+      id:
+        type: string
+        example: "02124"
+      consumerId:
+        type: string
+        example: "001"
+      utilityId:
+        type: string
+        example: "001"
+      description:
+        type: string
+        example: "Repair my house"
+      assignedWorkerId:
+        type: string
+        example: null
+      lastModifiedDateTime:
+        type: string
+        example: "2021-11-19T16:34:13.5328478"
+      approved:
+        type: boolean
+        example: false
+
+  Utility:
+    properties:
+      id:
+        type: string
+        example: "001"
+      name:
+        type: string
+        example: "Plumber"
+
+  Consumer:
+    properties:
+      id:
+        type: string
+        example: "001"
+      name:
+        type: string
+        example: "Consumer"
+      telephone:
+        type: string
+        example: "12345678"
+      email:
+        type: string
+        example: "xyc@xyc.com"
+      address:
+        type: string
+        example: "address"
+
+  ConsumerOrder:
+    properties:
+      workerId:
+        type: string
+        example: "001"
+      description:
+        type: string
+        example: "Some consumer description"
+
+  Worker:
+    properties:
+      id:
+        type: string
+        example: "001"
+      description:
+        type: string
+        example: "Worker description"
+      utilityId:
+        type: string
+        example: "001"
+      telephone:
+        type: string
+        example: "123465789"
+
+  OrderStatus:
+    properties:
+      orderId:
+        type: string
+        example: "Order100"
+      isApproved:
+        type: boolean
+        example: true
+
+  OrderAssignment:
+    properties:
+      consumerId:
+        type: string
+        example: "C1"
+      workerId:
+        type: string
+        example: "001"
+      orderDescription:
+        type: string
+        example: "order for plumber"
